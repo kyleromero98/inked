@@ -15,7 +15,6 @@
       .w3-quarter img:hover{opacity: 0.6; transition: 0.3s}
 
       ::placeholder {
-        font-size: 20px;
         vertical-align: center;
       }
     </style>
@@ -30,40 +29,21 @@
     <!-- initialize the SDK after all desired features are loaded -->
     <script defer src="/__/firebase/init.js"></script>
   </head>
-  <body class="w3-light-grey">
-
-    <!-- Sidebar/menu -->
-<nav class="w3-sidebar w3-bar-block w3-black w3-animate-right w3-top w3-text-light-grey w3-large" style="z-index:3;width:250px;font-weight:bold;display:none;right:0;" id="mySidebar">
-  <a href="javascript:void()" onclick="w3_close()" class="w3-bar-item w3-button w3-center w3-padding-32">CLOSE</a> 
-  <a href="https://www.w3schools.com/w3css/tryw3css_templates_portfolio3.htm#" onclick="w3_close()" class="w3-bar-item w3-button w3-center w3-padding-16">PORTFOLIO</a> 
-  <a href="https://www.w3schools.com/w3css/tryw3css_templates_portfolio3.htm#about" onclick="w3_close()" class="w3-bar-item w3-button w3-center w3-padding-16">ABOUT ME</a> 
-  <a href="https://www.w3schools.com/w3css/tryw3css_templates_portfolio3.htm#contact" onclick="w3_close()" class="w3-bar-item w3-button w3-center w3-padding-16">CONTACT</a>
-</nav>
+<body class="w3-light-grey">
 
 <!-- Top menu on small screens -->
 <header class="w3-container w3-top w3-white w3-xlarge w3-padding-16">
-    <div class="w3-padding w3-left">
-      <font class="w3-padding" size="6">INKED </font>
-  
-    
-  <input type="text" placeholder="Search..">
-    </div>
-    
-    <div class="w3-padding w3-right">
-        
-  <span class="w3-right w3-padding"><i class="fa fa-user-circle-o" aria-hidden="true"></i></span>
-    
-  <span class="w3-right w3-padding"><i class="w3-padding fa fa-comments-o" aria-hidden="true"></i></span>
-    
-  <span class="w3-right w3-padding"><i class="fa fa-heart-o" aria-hidden="true"></i></span>
-    
+  <div class="w3-left w3-padding" style="display:inline-block;vertical-align:middle;">
+    <font class="w3-padding" style="display:inline-block;vertical-align:middle;font-size: 32px;"><a href="index.html" style="text-decoration:none;">INKED</a></font>
+    <span class="w3-padding" style="display:inline-block;vertical-align:middle;"><input type="text" placeholder="Search.."></span>
   </div>
-        
-  <a href="javascript:void(0)" class="w3-right w3-button w3-white" onclick="w3_open()"></a>
+    
+  <div class="w3-right w3-padding" style="display:inline-block;vertical-align:middle;">
+      <span class="w3-padding" style="display:inline-block;vertical-align:middle;font-size: 32px;"><i class="fa fa-heart-o" aria-hidden="true"></i></span>
+      <span class="w3-padding" style="display:inline-block;vertical-align:middle;font-size: 32px;"><i class="w3-padding fa fa-comments-o" aria-hidden="true"></i></span> 
+      <span class="w3-padding" style="display:inline-block;vertical-align:middle;font-size: 32px;"><a href="profile.html"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a></span> 
+  </div>
 </header>
-
-<!-- Overlay effect when opening sidebar on small screens -->
-<div class="w3-overlay w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
 <!-- !PAGE CONTENT! -->
 <div class="w3-main w3-content" style="max-width:1600px;margin-top:83px">
