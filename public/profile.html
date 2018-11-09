@@ -14,7 +14,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 
 <body class="w3-light-grey w3-content" style="max-width:1600px">
 
-<!-- SIDEBAR/MENU -->
+<!-- TOP MENU -->
 <header class="w3-container w3-top w3-white w3-xlarge w3-padding-16">
   <div class="w3-left w3-padding" style="display:inline-block;vertical-align:middle;">
     <font class="w3-padding" style="display:inline-block;vertical-align:middle;font-size: 32px;"><a href="index.html" style="text-decoration:none;">INKED</a></font>
@@ -28,51 +28,43 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
   </div>
 </header>
 
-<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
-  <div class="w3-bar-block">
-    <a href="index.html" class="w3-bar-item w3-button w3-padding"><i class="fa fa-arrow-left fa-fw w3-margin-right"></i>Back</a> 
-  </div>
-  <div class="w3-container">
-    <hr>
-    <a href="#" onclick="w3_close()" class="w3-hide-large w3-right w3-jumbo w3-padding w3-hover-grey" title="close menu">
-      <i class="fa fa-remove"></i>
-    </a>
-    <img src="imgs/artist.jpeg" style="width:45%;" class="w3-round"><br><br>
-    <h4><b>Claire Thomas</b></h4>
-    <p class="w3-text-grey"></p>
-  </div>
-  <div class="w3-bar-block">
-    <a href="#portfolio" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-map-marker fa-fw w3-margin-right"></i>Newport Beach, CA</a> 
-    <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-building fa-fw w3-margin-right"></i>Johnny Tattoo</a> 
-    <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-envelope fa-fw w3-margin-right"></i>Message</a>
-  </div>
-  <div class="w3-container">
-    <hr>
-    <h4><b>Specialties</b></h4>
-     <!-- Progress bars / Skills -->
-    <p>Floral</p>
-    <div class="w3-grey">
-      <div class="w3-container w3-dark-grey w3-center" style="width:95%;height:25%">95%</div>
+<!-- SIDEBAR -->
+<div class="w3-row-padding w3-main" style="max-width:1600px;margin-top:150px">
+  <div class="w3-col s3">
+    <div class="w3-container">
+      <a href="#" onclick="w3_close()" class="w3-hide-large w3-right w3-jumbo w3-padding w3-hover-grey" title="close menu">
+        <i class="fa fa-remove"></i>
+      </a>
+      <img src="imgs/artist.jpeg" style="width:45%;" class="w3-round"><br><br>
+      <h4><b>Claire Thomas</b></h4>
+      <p class="w3-text-grey"></p>
     </div>
-    <p>Tribal</p>
-    <div class="w3-grey">
-      <div class="w3-container w3-dark-grey w3-center" style="width:85%">85%</div>
+    <div class="w3-bar-block">
+      <a href="#portfolio" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-map-marker fa-fw w3-margin-right"></i>Newport Beach, CA</a> 
+      <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-building fa-fw w3-margin-right"></i>Johnny Tattoo</a> 
+      <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-envelope fa-fw w3-margin-right"></i>Message</a>
     </div>
-    <p>Sleeves</p>
-    <div class="w3-grey">
-      <div class="w3-container w3-dark-grey w3-center" style="width:80%">80%</div>
+    <div class="w3-container">
+      <hr>
+      <h4><b>Specialties</b></h4>
+      <!-- Progress bars / Skills -->
+      <p>Floral</p>
+      <div class="w3-grey">
+        <div class="w3-container w3-dark-grey w3-center" style="width:95%;height:25%">95%</div>
+      </div>
+      <p>Tribal</p>
+      <div class="w3-grey">
+        <div class="w3-container w3-dark-grey w3-center" style="width:85%">85%</div>
+      </div>
+      <p>Sleeves</p>
+      <div class="w3-grey">
+        <div class="w3-container w3-dark-grey w3-center" style="width:80%">80%</div>
+      </div>
+      <hr>
     </div>
-    <hr>
   </div>
-</nav>
 
-<!-- Overlay effect when opening sidebar on small screens -->
-<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
-
-<!-- !PAGE CONTENT! -->
-<div class="w3-main" style="margin-left:300px">
-
-  <!-- Header -->
+  <div class="w3-col s9">
   <header id="portfolio">
     <div class="w3-container">
     <h1><b>Portfolio</b></h1>
@@ -134,11 +126,10 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
       </div>
     </div>
   </div>
-  
-  <div class="w3-black w3-center w3-padding-24">inked by Team CSKJ</div>
-
-<!-- End page content -->
+  </div> 
 </div>
+
+<div class="w3-black w3-center w3-padding-24">inked by Team CSKJ</div>
 
 <script>
 // Script to open and close sidebar
