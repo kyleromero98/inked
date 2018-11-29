@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>inked</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="jquery/css/ui-lightness/jquery-ui-1.10.0.custom.css" rel="stylesheet">
+<script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-database.js"></script>
+
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+</style>
+</head>
+
+<body class="w3-light-grey w3-content" style="max-width:1600px">
+
+<!-- TOP MENU -->
+<header class="w3-container w3-top w3-white w3-xlarge w3-padding-16">
+  <div class="w3-left w3-padding" style="display:inline-block;vertical-align:middle;">
+    <font class="w3-padding" style="display:inline-block;vertical-align:middle;font-size: 32px;"><a href="index.html" style="text-decoration:none;">INKED</a></font>
+    <span class="w3-padding" style="display:inline-block;vertical-align:middle;"><input type="text" placeholder="Search.."></span>
+  </div>
+    
+  <div class="w3-right w3-padding" style="display:inline-block;vertical-align:middle;">
+      <span class="w3-padding" style="display:inline-block;vertical-align:middle;font-size: 32px;"><i class="fa fa-heart-o" aria-hidden="true"></i></span>
+      <span class="w3-padding" style="display:inline-block;vertical-align:middle;font-size: 32px;"><i class="w3-padding fa fa-comments-o" aria-hidden="true"></i></span> 
+      <span class="w3-padding" style="display:inline-block;vertical-align:middle;font-size: 32px;"><a href="profile.html"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a></span> 
+  </div>
+</header>
+
+<!-- SIDEBAR -->
+<div class="w3-row-padding w3-main" style="max-width:1600px;margin-top:125px">
+
+  <header id="portfolio" style="display:flex;align-items:center;justify-content:space-between;">
+      <div class="w3-container w3-left">
+        <h1><b>Post image</b></h1>
+      </div>
+  </header>
+
+  <div class="w3-row-padding" style="text-align: center;">
+      <form action="upload.php" method="post" enctype="multipart/form-data">
+      <font style="padding-right: 5px;">Select image to upload:</font>
+      <input class="w3-button w3-black w3-hover-gray" type="file" name="fileToUpload" id="fileToUpload">
+      <!--<button type="submit" name="submit" class="w3-button w3-black w3-hover-gray">
+        <font>Upload Image</font>
+        <i class="fa fa-upload"></i>
+      </button>
+      !-->
+      </form>
+  </div>
+  <div class="w3-row-padding w3-padding" style="text-align:center;">
+    <font style="padding-right: 20px;">Title</font><input type="text" name="title" value="This is title">
+  </div>
+  <div class="w3-row-padding w3-padding" style="text-align:center;">
+    <font style="padding-right: 20px;">Caption</font><input type="text" name="caption" value="This is caption">
+  </div>
+  <div class="w3-row-padding w3-padding" style="text-align:center;">
+    <font style="padding-right: 20px;">Location</font><input type="text" name="location" value="Los Angeles">
+  </div>
+  <div class="w3-row-padding w3-padding" style="text-align:center;">
+    <font style="padding-right: 20px;">Parlor</font><input type="text" name="parlor" value="Johnny Tattoo">
+  </div>
+  <div class="w3-row-padding w3-padding" style="text-align:center;">
+    <font style="padding-right: 20px;">Artist</font><input type="text" name="artist" value="Tattoo Jack">
+  </div>
+  <div class="w3-row-padding w3-padding" style="text-align:center;">
+    <font style="padding-right: 20px;">Tags</font><input type="text" name="tags" value="#tribal">
+  </div>
+  <div class="w3-row-padding w3-padding" style="text-align:center;">
+      <button id="upload_image" class="w3-button w3-black w3-hover-gray w3-medium">
+        <font style="padding-right:5px;">Post</font>
+        <i class="fa fa-upload"></i>
+        <!--<i class="fa fa-check" aria-hidden="true"></i>!-->
+      </button>
+  </div>
+</div>
+
+<div class="w3-black w3-center w3-padding-24">inked by Team CSKJ</div>
+
+<script src="jquery/js/jquery-1.9.0.min.js"></script>
+<script src="jquery/js/jquery-ui-1.10.0.custom.min.js"></script>
+<script src="./uploadimage.js"></script>
+<script>
+// Script to open and close sidebar
+function w3_open() {
+    document.getElementById("mySidebar").style.display = "block";
+    document.getElementById("myOverlay").style.display = "block";
+}
+ 
+function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+    document.getElementById("myOverlay").style.display = "none";
+}
+</script>
+
+</body>
+</html>
