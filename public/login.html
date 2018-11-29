@@ -18,6 +18,21 @@
 			vertical-align: center;
 		}
 		</style>
+		
+		
+	<script src="https://www.gstatic.com/firebasejs/5.5.9/firebase.js"></script>
+	<script>
+		// Initialize Firebase
+		var config = {
+		apiKey: "AIzaSyALswf2ok94W-G7U414_Nr2wvKMdS15QN0",
+		authDomain: "inked-82308.firebaseapp.com",
+		databaseURL: "https://inked-82308.firebaseio.com",
+		projectId: "inked-82308",
+		storageBucket: "inked-82308.appspot.com",
+		messagingSenderId: "848318362383"
+		};
+		firebase.initializeApp(config);
+	</script>
 
 		<!-- update the version number as needed -->
 		<script defer src="/__/firebase/5.5.7/firebase-app.js"></script>
@@ -44,14 +59,7 @@
 	
 	<div class="w3-main w3-content w3-center" style="max-width:1600px;margin-top:166px">	
 		<font class="w3-xlarge w3-padding-64">Welcome to INKED, a platform that connects you with tattoo artists.</font>
-		<div>
-			<table class="w3-table w3-centered" style="max-width:600px;margin-top:50px">
-				<tr>
-					<td><div class="g-signin2" data-onsuccess="onSignIn"></div></td>
-					<td>Sign Up</td>
-				</tr>
-			</table>
-		</div>
+		<div class="g-signin2 w3-padding-48">[google button here]</div>
 	</div>
 
 	
