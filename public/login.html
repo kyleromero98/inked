@@ -1,37 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>inked</title>
-
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-		
-		<style>
-			body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
-			.w3-quarter img{cursor: pointer}
-			.w3-quarter img:hover{opacity: 0.6; transition: 0.3s}
-
-			::placeholder {
-			vertical-align: center;
-		}
-		</style>
-
-		<!-- update the version number as needed -->
-		<script defer src="/__/firebase/5.5.7/firebase-app.js"></script>
-		<!-- include only the Firebase features as you need -->
-		<script defer src="/__/firebase/5.5.7/firebase-auth.js"></script>
-		<script defer src="/__/firebase/5.5.7/firebase-database.js"></script>
-		<script defer src="/__/firebase/5.5.7/firebase-messaging.js"></script>
-		<script defer src="/__/firebase/5.5.7/firebase-storage.js"></script>
-		<!-- initialize the SDK after all desired features are loaded -->
-		<script defer src="/__/firebase/init.js"></script>
-		
-		<script src="https://apis.google.com/js/platform.js" async defer></script>
-
-	</head>
+	    <title>inked</title>
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	    <style>
+	      body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+	      .w3-quarter img{cursor: pointer}
+	      .w3-quarter img:hover{opacity: 0.6; transition: 0.3s}
+	
+	      ::placeholder {
+	        vertical-align: center;
+	      }
+	    </style>
+	
+	    <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-app.js"></script>
+	    <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-auth.js"></script>
+	    <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-database.js"></script>
+	    <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-messaging.js"></script>
+	    <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-storage.js"></script>
+        
+	    <script src="https://www.gstatic.com/firebasejs/5.5.9/firebase.js"></script>
+	    <script>
+	        // Initialize Firebase
+	        var config = {
+	            apiKey: "AIzaSyALswf2ok94W-G7U414_Nr2wvKMdS15QN0",
+	            authDomain: "inked-82308.firebaseapp.com",
+	            databaseURL: "https://inked-82308.firebaseio.com",
+	            projectId: "inked-82308",
+	            storageBucket: "inked-82308.appspot.com",
+	            messagingSenderId: "848318362383"
+	        };
+	        firebase.initializeApp(config);
+	    </script>
+	
+	    <script src="jquery/js/jquery-1.9.0.min.js"></script>
+	    <script src="jquery/js/jquery-ui-1.10.0.custom.min.js"></script>
+	    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	    <script src="./index.js"></script>
+	    <script src="./login.js"></script>
+  </head>
 <body class="w3-light-grey">
 	<!-- Top menu on small screens -->
 	<header class="w3-container w3-top w3-white w3-xlarge w3-padding-16 w3-center">
@@ -45,12 +59,7 @@
 	<div class="w3-main w3-content w3-center" style="max-width:1600px;margin-top:166px">	
 		<font class="w3-xlarge w3-padding-64">Welcome to INKED, a platform that connects you with tattoo artists.</font>
 		<div>
-			<table class="w3-table w3-centered" style="max-width:600px;margin-top:50px">
-				<tr>
-					<td><div class="g-signin2" data-onsuccess="onSignIn"></div></td>
-					<td>Sign Up</td>
-				</tr>
-			</table>
+			<img src="sign_in_btn.png" onclick="login()">
 		</div>
 	</div>
 

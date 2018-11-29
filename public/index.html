@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <title>inked</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>inked</title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <style>
       body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
@@ -19,110 +19,141 @@
       }
     </style>
 
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/5.5.7/firebase-app.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/5.5.7/firebase-auth.js"></script>
-    <script defer src="/__/firebase/5.5.7/firebase-database.js"></script>
-    <script defer src="/__/firebase/5.5.7/firebase-messaging.js"></script>
-    <script defer src="/__/firebase/5.5.7/firebase-storage.js"></script>
-    <!-- initialize the SDK after all desired features are loaded -->
-    <script defer src="/__/firebase/init.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-messaging.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-storage.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyALswf2ok94W-G7U414_Nr2wvKMdS15QN0",
+            authDomain: "inked-82308.firebaseapp.com",
+            databaseURL: "https://inked-82308.firebaseio.com",
+            projectId: "inked-82308",
+            storageBucket: "inked-82308.appspot.com",
+            messagingSenderId: "848318362383"
+        };
+        firebase.initializeApp(config);
+    </script>
+
+    <script src="jquery/js/jquery-1.9.0.min.js"></script>
+    <script src="jquery/js/jquery-ui-1.10.0.custom.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="./index.js"></script>
+
   </head>
-<body class="w3-light-grey">
+<body class="w3-light-grey w3-content">
 
-<!-- Top menu on small screens -->
-<header class="w3-container w3-top w3-white w3-xlarge w3-padding-16">
-  <div class="w3-left w3-padding" style="display:inline-block;vertical-align:middle;">
-    <font class="w3-padding" style="display:inline-block;vertical-align:middle;font-size: 32px;"><a href="index.html" style="text-decoration:none;">INKED</a></font>
-    <span class="w3-padding" style="display:inline-block;vertical-align:middle;"><input type="text" placeholder="Search.."></span>
-  </div>
+    <!-- TOP MENU -->
+    <header class="w3-container w3-top w3-white w3-xlarge w3-padding-16">
+      <div class="w3-left w3-padding" style="display:inline-block;vertical-align:middle;">
+          <!-- Logo -->
+          <font class="w3-padding" style="display:inline-block;vertical-align:middle;font-size: 32px;"><a href="index.html" style="text-decoration:none;">INKED</a></font>
+          
+          <!-- Search Bar -->
+          <span class="w3-padding" style="display:inline-block;vertical-align:middle;"><input type="text" placeholder="Search.."></span>
+      </div>
+        
+      <div class="w3-right w3-padding" style="display:inline-block;vertical-align:middle;">
+          <!-- Heart Button -->
+          <span class="w3-padding" style="display:inline-block;vertical-align:middle;font-size: 32px;">
+              <i class="fa fa-heart-o" aria-hidden="true"></i>
+          </span>
+          <!-- Messages Button -->
+          <span class="w3-padding" style="display:inline-block;vertical-align:middle;font-size: 32px;">
+              <i class="w3-padding fa fa-comments-o" aria-hidden="true"></i>
+          </span>
+          <!-- Profile Button -->
+          <span class="w3-padding" style="display:inline-block;vertical-align:middle;font-size: 32px;">
+              <a id="profile_button" href="#" onclick="setUserButtonHref()">
+                  <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+              </a>
+          </span> 
+      </div>
+    </header>
     
-  <div class="w3-right w3-padding" style="display:inline-block;vertical-align:middle;">
-      <span class="w3-padding" style="display:inline-block;vertical-align:middle;font-size: 32px;"><i class="fa fa-heart-o" aria-hidden="true"></i></span>
-      <span class="w3-padding" style="display:inline-block;vertical-align:middle;font-size: 32px;"><i class="w3-padding fa fa-comments-o" aria-hidden="true"></i></span> 
-      <span class="w3-padding" style="display:inline-block;vertical-align:middle;font-size: 32px;"><a href="profile.html"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a></span> 
-  </div>
-</header>
-
-<!-- !PAGE CONTENT! -->
-<div class="w3-main w3-content" style="max-width:1600px;margin-top:83px">
-  
-  <!-- Photo grid -->
-  <div class="w3-row w3-grayscale-min">
-    <div class="w3-quarter">
-      <img src="imgs/crow.jpg" style="width:100%" onclick="onClick(this)" alt="Crow tattoo.">
-      <img src="imgs/geometric.jpg" style="width:100%" onclick="onClick(this)" alt="Cool geometric tattoo.">
-      <img src="imgs/vida.jpg" style="width:100%" onclick="onClick(this)" alt="Super fantastic vida tattoo.">
-   </div>
+    <!-- !PAGE CONTENT! -->
+    <div class="w3-main w3-content" style="max-width:1600px;margin-top:83px">
+      
+      <!-- Photo grid -->
+      <div class="w3-row w3-grayscale-min">
+        <div class="w3-quarter">
+          <img src="imgs/crow.jpg" style="width:100%" onclick="onClick(this)" alt="Crow tattoo.">
+          <img src="imgs/geometric.jpg" style="width:100%" onclick="onClick(this)" alt="Cool geometric tattoo.">
+          <img src="imgs/vida.jpg" style="width:100%" onclick="onClick(this)" alt="Super fantastic vida tattoo.">
+       </div>
+        
+       <div class="w3-quarter">
+          <img src="imgs/tree.jpg" style="width:100%" onclick="onClick(this)" alt="Tree tattoo.">
+          <img src="imgs/white ink.jpg" style="width:100%" onclick="onClick(this)" alt="White ink tattoo. Do the damn thing.">
+          <img src="imgs/wave.jpg" style="width:100%" onclick="onClick(this)" alt="Shaka bruh.">
+        </div>
+        
+        <div class="w3-quarter">
+          <img src="imgs/koi.jpg" style="width:100%" onclick="onClick(this)" alt="Fun Koi tattoo. I love horoscope tattoos. So amazing.">
+          <img src="imgs/piano.jpg" style="width:100%" onclick="onClick(this)" alt="This is a really fun piano. <3 music">
+          <img src="imgs/elefante.jpg" style="width:100%" onclick="onClick(this)" alt="Love elephants they are so cool and snuggly.">
+        </div>
     
-   <div class="w3-quarter">
-      <img src="imgs/tree.jpg" style="width:100%" onclick="onClick(this)" alt="Tree tattoo.">
-      <img src="imgs/white ink.jpg" style="width:100%" onclick="onClick(this)" alt="White ink tattoo. Do the damn thing.">
-      <img src="imgs/wave.jpg" style="width:100%" onclick="onClick(this)" alt="Shaka bruh.">
+        <div class="w3-quarter">
+          <img src="imgs/floral sleeve.jpg" style="width:100%" onclick="onClick(this)" alt="Flowers are such a great thing for this planet. Like my girlfriend.">
+          <img src="imgs/flower.jpg" style="width:100%" onclick="onClick(this)" alt="I <3 flowers.">
+          <img src="imgs/leaf.jpg" style="width:100%" onclick="onClick(this)" alt="This leaf is such a great thing.">
+        </div>
+      </div>
+    
+      <!-- Pagination -->
+      <div class="w3-center w3-padding-32">
+        <div class="w3-bar">
+          <a href="index.html" class="w3-bar-item w3-button w3-hover-black">«</a>
+          <a href="index.html" class="w3-bar-item w3-black w3-button">1</a>
+          <a href="index.html" class="w3-bar-item w3-button w3-hover-black">2</a>
+          <a href="index.html" class="w3-bar-item w3-button w3-hover-black">3</a>
+          <a href="index.html" class="w3-bar-item w3-button w3-hover-black">4</a>
+          <a href="index.html" class="w3-bar-item w3-button w3-hover-black">»</a>
+        </div>
+      </div>
+      
+      <!-- Modal for full size images on click-->
+      <div id="modal01" class="w3-modal w3-black" style="padding-top:0" onclick="this.style.display=&#39;none&#39;">
+        <span class="w3-button w3-black w3-xlarge w3-display-topright">×</span>
+        <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
+          <img id="img01" class="w3-image">
+          <p id="caption"></p>
+        </div>
+      </div>d
+      
+      <div class="w3-black w3-center w3-padding-24">inked by Team CSKJ</div>
+    
+    <!-- End page content -->
     </div>
     
-    <div class="w3-quarter">
-      <img src="imgs/koi.jpg" style="width:100%" onclick="onClick(this)" alt="Fun Koi tattoo. I love horoscope tattoos. So amazing.">
-      <img src="imgs/piano.jpg" style="width:100%" onclick="onClick(this)" alt="This is a really fun piano. <3 music">
-      <img src="imgs/elefante.jpg" style="width:100%" onclick="onClick(this)" alt="Love elephants they are so cool and snuggly.">
-    </div>
-
-    <div class="w3-quarter">
-      <img src="imgs/floral sleeve.jpg" style="width:100%" onclick="onClick(this)" alt="Flowers are such a great thing for this planet. Like my girlfriend.">
-      <img src="imgs/flower.jpg" style="width:100%" onclick="onClick(this)" alt="I <3 flowers.">
-      <img src="imgs/leaf.jpg" style="width:100%" onclick="onClick(this)" alt="This leaf is such a great thing.">
-    </div>
-  </div>
-
-  <!-- Pagination -->
-  <div class="w3-center w3-padding-32">
-    <div class="w3-bar">
-      <a href="index.html" class="w3-bar-item w3-button w3-hover-black">«</a>
-      <a href="index.html" class="w3-bar-item w3-black w3-button">1</a>
-      <a href="index.html" class="w3-bar-item w3-button w3-hover-black">2</a>
-      <a href="index.html" class="w3-bar-item w3-button w3-hover-black">3</a>
-      <a href="index.html" class="w3-bar-item w3-button w3-hover-black">4</a>
-      <a href="index.html" class="w3-bar-item w3-button w3-hover-black">»</a>
-    </div>
-  </div>
-  
-  <!-- Modal for full size images on click-->
-  <div id="modal01" class="w3-modal w3-black" style="padding-top:0" onclick="this.style.display=&#39;none&#39;">
-    <span class="w3-button w3-black w3-xlarge w3-display-topright">×</span>
-    <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
-      <img id="img01" class="w3-image">
-      <p id="caption"></p>
-    </div>
-  </div>d
-  
-  <div class="w3-black w3-center w3-padding-24">inked by Team CSKJ</div>
-
-<!-- End page content -->
-</div>
-
-<script>
-// Script to open and close sidebar
-function w3_open() {
-    document.getElementById("mySidebar").style.display = "block";
-    document.getElementById("myOverlay").style.display = "block";
-}
-
-function w3_close() {
-    document.getElementById("mySidebar").style.display = "none";
-    document.getElementById("myOverlay").style.display = "none";
-}
-
-// Modal Image Gallery
-function onClick(element) {
-  document.getElementById("img01").src = element.src;
-  document.getElementById("modal01").style.display = "block";
-  var captionText = document.getElementById("caption");
-  captionText.innerHTML = element.alt;
-}
-
-</script>
+    <script>
+    // Script to open and close sidebar
+    function w3_open() {
+        document.getElementById("mySidebar").style.display = "block";
+        document.getElementById("myOverlay").style.display = "block";
+    }
     
+    function w3_close() {
+        document.getElementById("mySidebar").style.display = "none";
+        document.getElementById("myOverlay").style.display = "none";
+    }
+    
+    // Modal Image Gallery
+    function onClick(element) {
+      document.getElementById("img01").src = element.src;
+      document.getElementById("modal01").style.display = "block";
+      var captionText = document.getElementById("caption");
+      captionText.innerHTML = element.alt;
+    }
+    
+    </script>
+        
     <script>
       document.addEventListener('DOMContentLoaded', function() {
         // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
@@ -134,7 +165,6 @@ function onClick(element) {
         // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
         //
         // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-
         try {
           let app = firebase.app();
           let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
@@ -145,5 +175,7 @@ function onClick(element) {
         }
       });
     </script>
-  </body>
+    
+</body>
+
 </html>
