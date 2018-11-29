@@ -28,6 +28,9 @@
 		<script defer src="/__/firebase/5.5.7/firebase-storage.js"></script>
 		<!-- initialize the SDK after all desired features are loaded -->
 		<script defer src="/__/firebase/init.js"></script>
+		
+		<script src="https://apis.google.com/js/platform.js" async defer></script>
+
 	</head>
 <body class="w3-light-grey">
 	<!-- Top menu on small screens -->
@@ -44,7 +47,7 @@
 		<div>
 			<table class="w3-table w3-centered" style="max-width:600px;margin-top:50px">
 				<tr>
-					<td>Log In</td>
+					<td><div class="g-signin2" data-onsuccess="onSignIn"></div></td>
 					<td>Sign Up</td>
 				</tr>
 			</table>
