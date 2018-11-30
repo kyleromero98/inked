@@ -2,30 +2,53 @@
 
 <html>
 
-<title>inked</title>
+    <head>
+    <title>inked</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<meta charset="UTF-8">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+      .w3-quarter img{cursor: pointer}
+      .w3-quarter img:hover{opacity: 0.6; transition: 0.3s}
 
+      ::placeholder {
+        vertical-align: center;
+      }
+    </style>
 
+    <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-messaging.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-storage.js"></script>
 
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyALswf2ok94W-G7U414_Nr2wvKMdS15QN0",
+            authDomain: "inked-82308.firebaseapp.com",
+            databaseURL: "https://inked-82308.firebaseio.com",
+            projectId: "inked-82308",
+            storageBucket: "inked-82308.appspot.com",
+            messagingSenderId: "848318362383"
+        };
+        firebase.initializeApp(config);
+    </script>
 
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-
-
-<style>
-
-body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
-
-</style>
-
-
-
+    <script src="jquery/js/jquery-1.9.0.min.js"></script>
+    <script src="jquery/js/jquery-ui-1.10.0.custom.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="./index.js"></script>
+    <script src="./profile.js"></script>
+  </head>
+    
 <body class="w3-light-grey" style="max-width:1600px">
 
 
@@ -79,17 +102,22 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 
       <img src="imgs/artist.jpeg" style="width:45%;" class="w3-round"><br><br>
 
-      <h4><b>Claire Thomas</b></h4>
+      <h4>
+          <b id="user_name"></b>
+        </h4>
 
       <p class="w3-text-grey"></p>
 
     </div>
 
     <div class="w3-bar-block">
+        <a id="user_location" href="#portfolio" onclick="w3_close()" class="w3-bar-item w3-button w3-padding">
+            <i class="fa fa-map-marker fa-fw w3-margin-right"></i>
+        </a> 
 
-      <a href="#portfolio" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-map-marker fa-fw w3-margin-right"></i>Newport Beach, CA</a> 
-
-      <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-building fa-fw w3-margin-right"></i>Johnny Tattoo</a> 
+      <a id="user_parlor" href="#about" onclick="w3_close()" class="w3-bar-item w3-button w3-padding">
+          <i class="fa fa-building fa-fw w3-margin-right"></i>
+        </a> 
 
       <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-envelope fa-fw w3-margin-right"></i>Message</a>
 
@@ -148,7 +176,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
   <div class="w3-container w3-padding">
     <h4><b>About Me</b></h4>
 
-    <p>Hi! My name is Claire and I specialize in flowery tattoos! I love giving this kind of tattoo so much that I have dedicated almost my entire profile to my flower tats. Please feel free to message me if you have any questions related to price or availability. Have a great day!</p>
+    <p id="user_about"></p>
 
     <hr>
 
