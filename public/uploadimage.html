@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="jquery/css/ui-lightness/jquery-ui-1.10.0.custom.css" rel="stylesheet">
+<link href="./profile.css" rel="stylesheet">
 <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
 <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-database.js"></script>
 <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-app.js"></script>
@@ -16,7 +17,6 @@
 <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-database.js"></script>
 <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-messaging.js"></script>
 <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-storage.js"></script>
-<script src="./redir.js"></script>
 
 <script>
         // Initialize Firebase
@@ -42,6 +42,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 <header class="w3-container w3-top w3-white w3-xlarge w3-padding-16">
   <div class="w3-left w3-padding" style="display:inline-block;vertical-align:middle;">
     <font class="w3-padding" style="display:inline-block;vertical-align:middle;font-size: 32px;"><a href="index.html" style="text-decoration:none;">INKED</a></font>
+	
     <span class="w3-padding ui-widget" style="display:inline-block;vertical-align:middle;"><div class="ui-widget"><input id="search_bar" type="text" placeholder="Search.."></div></span>
 
 	<a class="w3-button w3-black w3-hover-gray w3-large" id="search_button" onclick="redir()"><i class="fa fa-search" aria-hidden="true"></i></a>
@@ -106,6 +107,9 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 <script src="jquery/js/jquery-1.9.0.min.js"></script>
 <script src="jquery/js/jquery-ui-1.10.0.custom.min.js"></script>
 <script src="./uploadimage.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="./redir.js"></script>
 <script>
 // Script to open and close sidebar
 function w3_open() {
