@@ -1,4 +1,5 @@
 var autocomplete_terms = [];
+var unique = [];
 
 $(document).ready( function() {
 	get_autocomplete_terms();
@@ -12,12 +13,13 @@ function get_autocomplete_terms() {
 		snapshot.forEach( function(childSnapshot) {
 			autocomplete_terms.push(childSnapshot.val());
 		});
+		unique = Array.from(new Set(autocomplete_terms));
+		$("#search_bar").autocomplete({
+			minLength:2,
+			source:unique
+		});
 	});
 	
-	$("#search_bar").autocomplete({
-		minLength:2,
-		source:autocomplete_terms,
-	});
 }
 
 function redir() {
