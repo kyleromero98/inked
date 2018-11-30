@@ -5,29 +5,10 @@ var autocomplete_terms = [];
 
 var user_pics = [];
 
+
 $(document).ready(function() {
 	get_autocomplete_terms();
     get_user_info();
-
-     var uploadsRef = firebase.database().ref('users/'+user_id+'/uploads');
-     uploadsRef.once('value').then(function(snapshot) {
-    if (snapshot.exists()) {
-        user_pics = snapshot.val().uploads;
-        for(var i = 0; i < user_pics.length(); i++) {
-            var imgRef = firebase.database().ref('imgs/' + user_pics[i]);  //hmm is this the value
-            imgRef.once('value').then(function(snapshot) {
-                if (snapshot.exists()) {
-                    var url = snapshot.val().url;
-                    var caption = snapshot.val().caption;
-                    var tempimage = '<img src=' + url +' style="width:100%" onclick="onClick(this)" alt="'+caption+'" >';
-                    var imgnum = 'image' + i;
-                    document.getElementById(imgnum).innerHTML = tempimage; //todo
-                }
-            });
-        }
-    }
-    //else "You have no imaged to display. Upload an image to get started."
-  });
 });
 
 function get_user_info() {
@@ -38,6 +19,24 @@ function get_user_info() {
             user_id = user.uid;
             loadUserInfo();
         }
+        firebase.database().ref('users/' + user_id + '/uploads').once('value').then(function(snapshot) {
+            if (snapshot.exists()) {
+                user_pics = snapshot.val().uploads;
+                var position = 0
+                for(let i = user_pics.length - 1;  i >= 0 && position < 6; i--) {
+                    firebase.database().ref('imgs/' + user_pics[i]).once('value').then(function(snapshot) {
+                        if (snapshot.exists()) {
+                            var url = snapshot.val().url;
+                            var caption = snapshot.val().caption;
+                            var tempimage = '<img src=' + url +' style="width:100%" onclick="onClick(this)" alt="'+ caption +'" >';
+                            var imgnum = 'image2' + position;
+                            position++;
+                            document.getElementById(imgnum).innerHTML = tempimage; //todo
+                        }
+                    });
+                }
+            }
+        });   
     }); 
 }
 
