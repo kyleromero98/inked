@@ -1,0 +1,10 @@
+.img_box {
+	height:177px;
+}
+
+.img_box_text {
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-line-clamp: 5;
+	-webkit-box-orient: vertical;
+}
