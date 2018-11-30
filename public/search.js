@@ -5,6 +5,9 @@ var searchVal;
 var imgIDs = [];
 
 $(document).ready( function() {
+    setUserLogged();
+    setTopBarLinks();
+    
 	searchVal = localStorage.searchVal;
 	
 	var databaseSearch = database.ref("tags/" + searchVal);
@@ -32,6 +35,13 @@ $(document).ready( function() {
 	
 });
 
+function setTopBarLinks() {
+    setUserButtonHref();
+    if (user_logged) {
+        makeSignOutVisible();
+    }
+}
+
 function setUserButtonHref() {
 	if (user_logged) {
     	document.getElementById("profile_button").href="profile.html";
@@ -44,9 +54,16 @@ function setUserButtonHref() {
 function setUserLogged() {
 	firebase.auth().onAuthStateChanged(function(user) {
   		if (user) {
-  			user_logged = true;
+            user_logged = true;
+            makeSignOutVisible();
+            setUserButtonHref();
   		} else {
-    		user_logged = false;
+            user_logged = false;
   		}
 	});
+}
+
+
+function makeSignOutVisible() {
+    document.getElementById("sign_out_span").style.display = "inline-block";
 }
