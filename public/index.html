@@ -82,27 +82,27 @@
       <!-- Photo grid -->
       <div class="w3-row w3-grayscale-min">
         <div class="w3-quarter">
-          <img src="imgs/crow.jpg" style="width:100%" onclick="onClick(this)" alt="Crow tattoo.">
-          <img src="imgs/geometric.jpg" style="width:100%" onclick="onClick(this)" alt="Cool geometric tattoo.">
-          <img src="imgs/vida.jpg" style="width:100%" onclick="onClick(this)" alt="Super fantastic vida tattoo.">
+          <div id="image0""><img src="imgs/flower.jpg" style="width:100%" onclick="onClick(this)" alt="Tree tattoo."></img></div>
+          <div id="image1"></div>
+          <div id="image2"></div>
        </div>
         
        <div class="w3-quarter">
-          <img src="imgs/tree.jpg" style="width:100%" onclick="onClick(this)" alt="Tree tattoo.">
-          <img src="imgs/white ink.jpg" style="width:100%" onclick="onClick(this)" alt="White ink tattoo. Do the damn thing.">
-          <img src="imgs/wave.jpg" style="width:100%" onclick="onClick(this)" alt="Shaka bruh.">
+          <div id="image3"></div>
+          <div id="image4"></div>
+          <div id="image5"></div>
         </div>
         
         <div class="w3-quarter">
-          <img src="imgs/koi.jpg" style="width:100%" onclick="onClick(this)" alt="Fun Koi tattoo. I love horoscope tattoos. So amazing.">
-          <img src="imgs/piano.jpg" style="width:100%" onclick="onClick(this)" alt="This is a really fun piano. <3 music">
-          <img src="imgs/elefante.jpg" style="width:100%" onclick="onClick(this)" alt="Love elephants they are so cool and snuggly.">
+          <div id="image6"></div>
+          <div id="image7"></div>
+          <div id="image8"></div>
         </div>
     
         <div class="w3-quarter">
-          <img src="imgs/floral sleeve.jpg" style="width:100%" onclick="onClick(this)" alt="Flowers are such a great thing for this planet. Like my girlfriend.">
-          <img src="imgs/flower.jpg" style="width:100%" onclick="onClick(this)" alt="I <3 flowers.">
-          <img src="imgs/leaf.jpg" style="width:100%" onclick="onClick(this)" alt="This leaf is such a great thing.">
+          <div id="image9"></div>
+          <div id="image10"></div>
+          <div id="image11"></div>
         </div>
       </div>
     
@@ -169,6 +169,7 @@
           let app = firebase.app();
           let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
           document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
+
         } catch (e) {
           console.error(e);
           document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
