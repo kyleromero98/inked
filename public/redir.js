@@ -16,7 +16,16 @@ function get_autocomplete_terms() {
 		unique = Array.from(new Set(autocomplete_terms));
 		$("#search_bar").autocomplete({
 			minLength:2,
-			source:unique
+			source:unique,
+			select: function (event, ui) {
+				$( "#search_bar" ).val(ui.item.label);
+        		$( "#search_button" ).click();
+        		return false;
+    		},
+    		focus: function( event, ui ) {
+        		$( "#search_bar" ).val(ui.item.label);
+        		return false;
+    		}
 		});
 	});
 	
