@@ -1,6 +1,19 @@
 function login() {
-	var provider = new firebase.auth.GoogleAuthProvider();
-	firebase.auth().signInWithRedirect(provider);
+    // Get the location
+    var user_location = document.getElementById('location_input').value;
+    var user_parlor = document.getElementById('parlor_input').value;
+    var user_bio = document.getElementById('bio_input').value;
+    var valid_info = (user_location != "") && (user_parlor != "") && (user_bio != "");
+    if (valid_info) {
+        sessionStorage.location_input = user_location;
+        sessionStorage.parlor_input = user_parlor;
+        sessionStorage.bio_input = user_bio;
+        var provider = new firebase.auth.GoogleAuthProvider();
+	    firebase.auth().signInWithRedirect(provider);
+    }
+    else {
+        alert("Please enter some info in the input boxes below.");
+    }
 }
 
 function fire_addUser(uid, name) {
@@ -8,12 +21,16 @@ function fire_addUser(uid, name) {
     var users_ref = database.ref('users/');
     var new_user = users_ref.child(uid);
     
+    alert("location: " + sessionStorage.location_input)
+    alert("location: " + sessionStorage.parlor_input)
+    alert("location: " + sessionStorage.bio_input)
+    
     new_user.set({
         name: name,
-        location: "placeholder",
-        parlor: "placeholder",
+        location: sessionStorage.location_input,
+        parlor: sessionStorage.parlor_input,
         uploads: [],
-        about: "placeholder"
+        about: sessionStorage.bio_input
     });
     
     return new_user.key
@@ -32,7 +49,8 @@ function addIfUserExists(uid, name){
         }
         
         if (!user_exists) {
-            fire_addUser(uid, name)
+            alert("user does not exist in the database");
+            fire_addUser(uid, name);
         }
         
         window.location.replace("index.html");
