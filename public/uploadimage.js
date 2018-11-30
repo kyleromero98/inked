@@ -4,6 +4,9 @@ var current_count = 0;
 
 var current_tag_image_list = [];
 var autocomplete_terms = [];
+var uploads = [];
+
+var user_id = "";
 
 $( document ).ready(function() {
   firebase.database().ref('imgs/max_count').once('value').then(function(snapshot) {
@@ -11,6 +14,7 @@ $( document ).ready(function() {
       current_count = snapshot.val().max_count;
     }
   });
+  get_user_info();
 });
 
 $( "#upload_image" ).click(function () {
@@ -57,12 +61,7 @@ $( "#upload_image" ).click(function () {
         }
       });
       writeImageData(current_count, document.getElementById('title').value, document.getElementById('caption').value, document.getElementById('location').value, document.getElementById('parlor').value, document.getElementById('artist').value, document.getElementById('tag').value, downloadURL);
-      current_count += 1;
-      firebase.database().ref('imgs/max_count').set({
-        max_count: current_count
-      });
       // head back to profile
-      window.location.href = "profile.html";
     });
   });
 
@@ -78,6 +77,19 @@ function writeImageData(img_id, title, caption, location, parlor, artist, tag, u
     artist: artist,
     tag: tag,
     url: url
+  });
+
+  // uploading for getting images of the user
+  firebase.database().ref('users/' + user_id + '/uploads').once('value').then(function(snapshot) {
+    if (snapshot.exists()) {
+      uploads = snapshot.val().uploads;
+      uploads.push(current_count);
+      firebase.database().ref('users/' + user_id + '/uploads').set({uploads});
+    } else {
+      uploads = [];
+      uploads.push(current_count);
+      firebase.database().ref('users/' + user_id + '/uploads').set({uploads});
+    }
   });
 
   // uploading for searchability of images by tags
@@ -104,7 +116,20 @@ function writeImageData(img_id, title, caption, location, parlor, artist, tag, u
       autocomplete_terms.push(tag);
       firebase.database().ref('autocomplete_terms').set({autocomplete_terms});
     }
+    current_count += 1;
+      firebase.database().ref('imgs/max_count').set({
+        max_count: current_count
+      });
+    window.location.href = "profile.html";
   });
+}
+
+function get_user_info() {
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      user_id = user.uid;
+    }
+  }); 
 }
 
 
