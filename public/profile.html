@@ -9,7 +9,9 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+	<link href="jquery/css/ui-lightness/jquery-ui-1.10.0.custom.css" rel="stylesheet">
+	<link href="./profile.css" rel="stylesheet">
+	
     <style>
       body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       .w3-quarter img{cursor: pointer}
@@ -60,8 +62,9 @@
 
     <font class="w3-padding" style="display:inline-block;vertical-align:middle;font-size: 32px;"><a href="index.html" style="text-decoration:none;">INKED</a></font>
 
-    <span class="w3-padding" style="display:inline-block;vertical-align:middle;"><input type="text" placeholder="Search.."></span>
+    <span class="w3-padding ui-widget" style="display:inline-block;vertical-align:middle;"><div class="ui-widget"><input id="search_bar" type="text" placeholder="Search.."></div></span>
 
+	<a class="w3-button w3-black w3-hover-gray w3-large"><i class="fa fa-search" aria-hidden="true"></i></a>
   </div>
 
     
@@ -110,15 +113,15 @@
     </div>
 
     <div class="w3-bar-block">
-        <a id="user_location" href="#portfolio" onclick="w3_close()" class="w3-bar-item w3-button w3-padding">
+        <a id="user_location" onclick="w3_close()" class="w3-bar-item w3-button w3-padding">
             <i class="fa fa-map-marker fa-fw w3-margin-right"></i>
         </a> 
 
-      <a id="user_parlor" href="#about" onclick="w3_close()" class="w3-bar-item w3-button w3-padding">
+      <a id="user_parlor" onclick="w3_close()" class="w3-bar-item w3-button w3-padding">
           <i class="fa fa-building fa-fw w3-margin-right"></i>
         </a> 
 
-      <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-envelope fa-fw w3-margin-right"></i>Message</a>
+      <a onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-envelope fa-fw w3-margin-right"></i>Message</a>
 
     </div>
 

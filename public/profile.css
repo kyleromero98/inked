@@ -8,3 +8,9 @@
 	-webkit-line-clamp: 5;
 	-webkit-box-orient: vertical;
 }
+
+.ui-menu-item .ui-menu-item-wrapper.ui-state-active{
+	border: 2px solid #C0C0C0;
+	color: #000;
+	font-weight:normal;
+}

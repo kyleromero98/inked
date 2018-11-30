@@ -8,7 +8,9 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+	<link href="jquery/css/ui-lightness/jquery-ui-1.10.0.custom.css" rel="stylesheet">
+	<link href="./profile.css" rel="stylesheet">
+	
     <style>
       body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       .w3-quarter img{cursor: pointer}
@@ -44,6 +46,7 @@
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="./index.js"></script>
+    <script src="./profile.js"></script>
 
   </head>
 <body class="w3-light-grey">
@@ -55,7 +58,9 @@
           <font class="w3-padding" style="display:inline-block;vertical-align:middle;font-size: 32px;"><a href="index.html" style="text-decoration:none;">INKED</a></font>
           
           <!-- Search Bar -->
-          <span class="w3-padding" style="display:inline-block;vertical-align:middle;"><input type="text" placeholder="Search.."></span>
+          <span class="w3-padding ui-widget" style="display:inline-block;vertical-align:middle;"><div class="ui-widget"><input id="search_bar" type="text" placeholder="Search.."></div></span>
+
+		  <a class="w3-button w3-black w3-hover-gray w3-large"><i class="fa fa-search" aria-hidden="true"></i></a>
       </div>
         
       <div class="w3-right w3-padding" style="display:inline-block;vertical-align:middle;">
