@@ -21,10 +21,6 @@ function fire_addUser(uid, name) {
     var users_ref = database.ref('users/');
     var new_user = users_ref.child(uid);
     
-    alert("location: " + sessionStorage.location_input)
-    alert("location: " + sessionStorage.parlor_input)
-    alert("location: " + sessionStorage.bio_input)
-    
     new_user.set({
         name: name,
         location: sessionStorage.location_input,
@@ -49,7 +45,6 @@ function addIfUserExists(uid, name){
         }
         
         if (!user_exists) {
-            alert("user does not exist in the database");
             fire_addUser(uid, name);
         }
         
