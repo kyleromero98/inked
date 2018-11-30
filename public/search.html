@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>inked</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link href="jquery/css/ui-lightness/jquery-ui-1.10.0.custom.css" rel="stylesheet">
+	<link href="./profile.css" rel="stylesheet">
+	
+    <style>
+      body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+      .w3-quarter img{cursor: pointer}
+      .w3-quarter img:hover{opacity: 0.6; transition: 0.3s}
+
+      ::placeholder {
+        vertical-align: center;
+      }
+    </style>
+
+    <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-messaging.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-storage.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyALswf2ok94W-G7U414_Nr2wvKMdS15QN0",
+            authDomain: "inked-82308.firebaseapp.com",
+            databaseURL: "https://inked-82308.firebaseio.com",
+            projectId: "inked-82308",
+            storageBucket: "inked-82308.appspot.com",
+            messagingSenderId: "848318362383"
+        };
+        firebase.initializeApp(config);
+    </script>
+
+    <script src="jquery/js/jquery-1.9.0.min.js"></script>
+    <script src="jquery/js/jquery-ui-1.10.0.custom.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="./search.js"></script>
+    <script src="./profile.js"></script>
+	<script src="./redir.js"></script>
+
+  </head>
+<body class="w3-light-grey">
+
+    <!-- TOP MENU -->
+    <header class="w3-container w3-top w3-white w3-xlarge w3-padding-16">
+      <div class="w3-left w3-padding" style="display:inline-block;vertical-align:middle;">
+          <!-- Logo -->
+          <font class="w3-padding" style="display:inline-block;vertical-align:middle;font-size: 32px;"><a href="index.html" style="text-decoration:none;">INKED</a></font>
+          
+          <!-- Search Bar -->
+          <span class="w3-padding ui-widget" style="display:inline-block;vertical-align:middle;"><div class="ui-widget"><input id="search_bar" type="text" placeholder="Search.."></div></span>
+
+		  <a class="w3-button w3-black w3-hover-gray w3-large" id="search_button" onclick="redir()"><i class="fa fa-search" aria-hidden="true"></i></a>
+      </div>
+        
+      <div class="w3-right w3-padding" style="display:inline-block;vertical-align:middle;">
+          <!-- Heart Button -->
+          <span class="w3-padding" style="display:inline-block;vertical-align:middle;font-size: 32px;">
+              <i class="fa fa-heart-o" aria-hidden="true"></i>
+          </span>
+          <!-- Messages Button -->
+          <span class="w3-padding" style="display:inline-block;vertical-align:middle;font-size: 32px;">
+              <i class="w3-padding fa fa-comments-o" aria-hidden="true"></i>
+          </span>
+          <!-- Profile Button -->
+          <span class="w3-padding" style="display:inline-block;vertical-align:middle;font-size: 32px;">
+              <a id="profile_button" href="#" onclick="setUserButtonHref()">
+                  <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+              </a>
+          </span> 
+      </div>
+    </header>
+    
+    <!-- !PAGE CONTENT! -->
+    <div class="w3-main w3-content" style="max-width:1600px;margin-top:83px">
+      
+      <!-- Photo grid -->
+      <div class="w3-row w3-grayscale-min">
+        <div class="w3-quarter">
+          <div id="image0"></div>
+          <div id="image1"></div>
+          <div id="image2"></div>
+       </div>
+        
+       <div class="w3-quarter">
+          <div id="image3"></div>
+          <div id="image4"></div>
+          <div id="image5"></div>
+        </div>
+        
+        <div class="w3-quarter">
+          <div id="image6"></div>
+          <div id="image7"></div>
+          <div id="image8"></div>
+        </div>
+    
+        <div class="w3-quarter">
+          <div id="image9"></div>
+          <div id="image10"></div>
+          <div id="image11"></div>
+        </div>
+      </div>
+    
+      <!-- Pagination -->
+      <div class="w3-center w3-padding-32">
+        <div class="w3-bar">
+          <a href="index.html" class="w3-bar-item w3-button w3-hover-black">«</a>
+          <a href="index.html" class="w3-bar-item w3-black w3-button">1</a>
+          <a href="index.html" class="w3-bar-item w3-button w3-hover-black">2</a>
+          <a href="index.html" class="w3-bar-item w3-button w3-hover-black">3</a>
+          <a href="index.html" class="w3-bar-item w3-button w3-hover-black">4</a>
+          <a href="index.html" class="w3-bar-item w3-button w3-hover-black">»</a>
+        </div>
+      </div>
+      
+      <!-- Modal for full size images on click-->
+      <div id="modal01" class="w3-modal w3-black" style="padding-top:0" onclick="this.style.display=&#39;none&#39;">
+        <span class="w3-button w3-black w3-xlarge w3-display-topright">×</span>
+        <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
+          <img id="img01" class="w3-image">
+          <p id="caption"></p>
+        </div>
+      </div>d
+      
+      <div class="w3-black w3-center w3-padding-24">inked by Team CSKJ</div>
+    
+    <!-- End page content -->
+    </div>
+    
+    <script>
+    // Script to open and close sidebar
+    function w3_open() {
+        document.getElementById("mySidebar").style.display = "block";
+        document.getElementById("myOverlay").style.display = "block";
+    }
+    
+    function w3_close() {
+        document.getElementById("mySidebar").style.display = "none";
+        document.getElementById("myOverlay").style.display = "none";
+    }
+    
+    // Modal Image Gallery
+    function onClick(element) {
+      document.getElementById("img01").src = element.src;
+      document.getElementById("modal01").style.display = "block";
+      var captionText = document.getElementById("caption");
+      captionText.innerHTML = element.alt;
+    }
+    
+    </script>
+        
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+        // // The Firebase SDK is initialized and available here!
+        //
+        // firebase.auth().onAuthStateChanged(user => { });
+        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
+        // firebase.messaging().requestPermission().then(() => { });
+        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
+        //
+        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+        try {
+          let app = firebase.app();
+          let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
+          document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
+
+        } catch (e) {
+          console.error(e);
+          document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
+        }
+      });
+    </script>
+    
+</body>
+
+</html>

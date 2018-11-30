@@ -45,6 +45,9 @@
     <script src="jquery/js/jquery-ui-1.10.0.custom.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="./index.js"></script>
+    <script src="./profile.js"></script>
+	<script src="./redir.js"></script>
 
   </head>
 <body class="w3-light-grey">
@@ -58,7 +61,7 @@
           <!-- Search Bar -->
           <span class="w3-padding ui-widget" style="display:inline-block;vertical-align:middle;"><div class="ui-widget"><input id="search_bar" type="text" placeholder="Search.."></div></span>
 
-		  <a class="w3-button w3-black w3-hover-gray w3-large"><i class="fa fa-search" aria-hidden="true"></i></a>
+		  <a onclick="redir()" class="w3-button w3-black w3-hover-gray w3-large" id="search_button"><i class="fa fa-search" aria-hidden="true"></i></a>
       </div>
         
       <div class="w3-right w3-padding" style="display:inline-block;vertical-align:middle;">
