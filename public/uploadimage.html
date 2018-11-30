@@ -11,6 +11,24 @@
 <link href="jquery/css/ui-lightness/jquery-ui-1.10.0.custom.css" rel="stylesheet">
 <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
 <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-messaging.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-storage.js"></script>
+
+<script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyALswf2ok94W-G7U414_Nr2wvKMdS15QN0",
+            authDomain: "inked-82308.firebaseapp.com",
+            databaseURL: "https://inked-82308.firebaseio.com/",
+            projectId: "inked-82308",
+            storageBucket: "inked-82308.appspot.com",
+            messagingSenderId: "848318362383"
+        };
+        firebase.initializeApp(config);
+</script>
 
 <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
@@ -45,7 +63,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
   <div class="w3-row-padding" style="text-align: center;">
       <form action="upload.php" method="post" enctype="multipart/form-data">
       <font style="padding-right: 5px;">Select image to upload:</font>
-      <input class="w3-button w3-black w3-hover-gray" type="file" name="fileToUpload" id="fileToUpload">
+      <input class="w3-button w3-black w3-hover-gray" type="file" name="fileToUpload" id="file_to_upload">
       <!--<button type="submit" name="submit" class="w3-button w3-black w3-hover-gray">
         <font>Upload Image</font>
         <i class="fa fa-upload"></i>
@@ -54,22 +72,22 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
       </form>
   </div>
   <div class="w3-row-padding w3-padding" style="text-align:center;">
-    <font style="padding-right: 20px;">Title</font><input type="text" name="title" value="This is title">
+    <font style="padding-right: 20px;">Title</font><input id="title" type="text" name="title" value="This is title">
   </div>
   <div class="w3-row-padding w3-padding" style="text-align:center;">
-    <font style="padding-right: 20px;">Caption</font><input type="text" name="caption" value="This is caption">
+    <font style="padding-right: 20px;">Caption</font><input id="caption" type="text" name="caption" value="This is caption">
   </div>
   <div class="w3-row-padding w3-padding" style="text-align:center;">
-    <font style="padding-right: 20px;">Location</font><input type="text" name="location" value="Los Angeles">
+    <font style="padding-right: 20px;">Location</font><input id="location" type="text" name="location" value="Los Angeles">
   </div>
   <div class="w3-row-padding w3-padding" style="text-align:center;">
-    <font style="padding-right: 20px;">Parlor</font><input type="text" name="parlor" value="Johnny Tattoo">
+    <font style="padding-right: 20px;">Parlor</font><input id="parlor" type="text" name="parlor" value="Johnny Tattoo">
   </div>
   <div class="w3-row-padding w3-padding" style="text-align:center;">
-    <font style="padding-right: 20px;">Artist</font><input type="text" name="artist" value="Tattoo Jack">
+    <font style="padding-right: 20px;">Artist</font><input id="artist" type="text" name="artist" value="Tattoo Jack">
   </div>
   <div class="w3-row-padding w3-padding" style="text-align:center;">
-    <font style="padding-right: 20px;">Tags</font><input type="text" name="tags" value="#tribal">
+    <font style="padding-right: 20px;">Tags</font><input id="tag" type="text" name="tag" value="tribal">
   </div>
   <div class="w3-row-padding w3-padding" style="text-align:center;">
       <button id="upload_image" class="w3-button w3-black w3-hover-gray w3-medium">
