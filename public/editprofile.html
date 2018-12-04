@@ -16,7 +16,6 @@
 <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-database.js"></script>
 <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-messaging.js"></script>
 <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-storage.js"></script>
-<script src="./redir.js"></script>
 
 <script>
         // Initialize Firebase
@@ -34,6 +33,7 @@
 <script src="jquery/js/jquery-1.9.0.min.js"></script>
 <script src="jquery/js/jquery-ui-1.10.0.custom.min.js"></script>
 <script src="./editprofile.js"></script>
+<script src="./redir.js"></script>
 
 <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
@@ -54,7 +54,14 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
   <div class="w3-right w3-padding" style="display:inline-block;vertical-align:middle;">
       <span class="w3-padding" style="display:inline-block;vertical-align:middle;font-size: 32px;"><i class="fa fa-heart-o" aria-hidden="true"></i></span>
       <span class="w3-padding" style="display:inline-block;vertical-align:middle;font-size: 32px;"><i class="w3-padding fa fa-comments-o" aria-hidden="true"></i></span> 
-      <span class="w3-padding" style="display:inline-block;vertical-align:middle;font-size: 32px;"><a href="profile.html"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a></span> 
+      <span class="w3-padding" style="display:inline-block;vertical-align:middle;font-size: 32px;"><a href="profile.html"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a></span>
+      <!-- Sign Out Button -->
+      <span id="sign_out_span" class="w3-padding" style="display:none;vertical-align:middle;font-size: 32px;">
+        <a id="sign_out_button" href="#" onclick="signOut()">
+          <i class="fa fa-sign-out" aria-hidden="true"></i>
+        </a>
+      </span>
+
   </div>
 </header>
 
@@ -76,11 +83,6 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
   <div class="w3-row-padding w3-padding" style="text-align:center;">
     <font style="padding-right: 20px;">About</font><input id="about" type="text" name="about" value="Tattoo Jack">
   </div>
-  <script type="text/javascript">
-    function click() {
-      document.write("pls work");
-    }
-  </script>
   <div class="w3-row-padding w3-padding" style="text-align:center;">
       <button id="update_profile" onclick="writeProfileData()" class="w3-button w3-black w3-hover-gray w3-medium">
         <font style="padding-right:5px;">Update</font>

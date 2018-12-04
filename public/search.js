@@ -67,3 +67,9 @@ function setUserLogged() {
 function makeSignOutVisible() {
     document.getElementById("sign_out_span").style.display = "inline-block";
 }
+
+function signOut() {
+    firebase.auth().signOut().then(function() {
+        window.location.replace("index.html");
+    });
+}

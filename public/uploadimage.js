@@ -9,12 +9,50 @@ var uploads = [];
 var user_id = "";
 
 $( document ).ready(function() {
+
+  setUserLogged();
+  setTopBarLinks();
+
   firebase.database().ref('imgs/max_count').once('value').then(function(snapshot) {
     if (snapshot.exists()) {
       current_count = snapshot.val().max_count;
     }
   });
-  get_user_info();
+
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      user_id = user.uid;
+    
+      // Get the user info
+      firebase.database().ref("users/" + user_id).once('value', function(snapshot) {
+        user_info = snapshot.val();
+        $("#location").val(user_info["location"]);
+        $("#parlor").val(user_info["parlor"]);
+        $("#artist").val(user_info["name"]);
+      });
+    }
+  });
+  // downloading autocomplete data
+  firebase.database().ref('autocomplete_terms').once('value').then(function(snapshot) {
+    if (snapshot.exists()) {
+      autocomplete_terms = snapshot.val().autocomplete_terms;
+    } else {
+      autocomplete_terms = [];
+    }
+    $("#tag").autocomplete({
+      minLength:2,
+      source:unique,
+      select: function (event, ui) {
+        $( "#tag" ).val(ui.item.label);
+          return false;
+      },
+      focus: function( event, ui ) {
+        $( "#tag" ).val(ui.item.label);
+        return false;
+      }
+    });
+  });
+  $( "#title" ).focus();
 });
 
 $( "#upload_image" ).click(function () {
@@ -105,31 +143,51 @@ function writeImageData(img_id, title, caption, location, parlor, artist, tag, u
     }
   });
 
-  // uploading for autocomplete data
-  firebase.database().ref('autocomplete_terms').once('value').then(function(snapshot) {
-    if (snapshot.exists()) {
-      autocomplete_terms = snapshot.val().autocomplete_terms;
-      autocomplete_terms.push(tag);
-      firebase.database().ref('autocomplete_terms').set({autocomplete_terms});
-    } else {
-      autocomplete_terms = [];
-      autocomplete_terms.push(tag);
-      firebase.database().ref('autocomplete_terms').set({autocomplete_terms});
+  // uploading autocomplete data
+  autocomplete_terms.push(tag);
+  firebase.database().ref('autocomplete_terms').set({autocomplete_terms});
+
+  current_count += 1;
+    firebase.database().ref('imgs/max_count').set({
+      max_count: current_count
+    });
+  window.location.href = "profile.html";
+}
+
+function setTopBarLinks() {
+    setUserButtonHref();
+    if (user_logged) {
+        makeSignOutVisible();
     }
-    current_count += 1;
-      firebase.database().ref('imgs/max_count').set({
-        max_count: current_count
-      });
-    window.location.href = "profile.html";
+}
+
+function setUserButtonHref() {
+  if (user_logged) {
+      document.getElementById("profile_button").href="profile.html";
+  }
+  else {
+      document.getElementById("profile_button").href="login.html";
+  }
+}
+
+function setUserLogged() {
+  firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+            user_logged = true;
+            makeSignOutVisible();
+            setUserButtonHref();
+      } else {
+            user_logged = false;
+      }
   });
 }
 
-function get_user_info() {
-  firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-      user_id = user.uid;
-    }
-  }); 
+function makeSignOutVisible() {
+    document.getElementById("sign_out_span").style.display = "inline-block";
 }
 
-
+function signOut() {
+    firebase.auth().signOut().then(function() {
+        window.location.replace("index.html");
+    });
+}

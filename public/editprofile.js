@@ -4,7 +4,11 @@ var user_id = "";
 
 var uploads = [];
 
-$( document ).ready(function() {
+$(document).ready(function() {
+  alert("hello")
+  setUserLogged();
+  setTopBarLinks();
+
   get_user_info();
   // add stuff here to auto populate with recommended values
 });
@@ -38,4 +42,42 @@ function get_user_info() {
   }); 
 }
 
+function setTopBarLinks() {
+    setUserButtonHref();
+    if (user_logged) {
+        makeSignOutVisible();
+    }
+}
 
+function setUserButtonHref() {
+  if (user_logged) {
+      document.getElementById("profile_button").href="profile.html";
+  }
+  else {
+      document.getElementById("profile_button").href="login.html";
+  }
+}
+
+function setUserLogged() {
+  firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+            user_logged = true;
+            alert("hello again")
+            makeSignOutVisible();
+            setUserButtonHref();
+      } else {
+            user_logged = false;
+      }
+  });
+}
+
+function makeSignOutVisible() {
+    alert("hello again")
+    document.getElementById("sign_out_span").style.display = "inline-block";
+}
+
+function signOut() {
+    firebase.auth().signOut().then(function() {
+        window.location.replace("index.html");
+    });
+}

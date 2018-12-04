@@ -51,7 +51,13 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
   <div class="w3-right w3-padding" style="display:inline-block;vertical-align:middle;">
       <span class="w3-padding" style="display:inline-block;vertical-align:middle;font-size: 32px;"><i class="fa fa-heart-o" aria-hidden="true"></i></span>
       <span class="w3-padding" style="display:inline-block;vertical-align:middle;font-size: 32px;"><i class="w3-padding fa fa-comments-o" aria-hidden="true"></i></span> 
-      <span class="w3-padding" style="display:inline-block;vertical-align:middle;font-size: 32px;"><a href="profile.html"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a></span> 
+      <span class="w3-padding" style="display:inline-block;vertical-align:middle;font-size: 32px;"><a href="profile.html"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a></span>
+      <!-- Sign Out Button -->
+      <span id="sign_out_span" class="w3-padding" style="display:none;vertical-align:middle;font-size: 32px;">
+        <a id="sign_out_button" href="#" onclick="signOut()">
+          <i class="fa fa-sign-out" aria-hidden="true"></i>
+        </a>
+      </span>
   </div>
 </header>
 
@@ -68,36 +74,30 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
       <form action="upload.php" method="post" enctype="multipart/form-data">
       <font style="padding-right: 5px;">Select image to upload:</font>
       <input class="w3-button w3-black w3-hover-gray" type="file" name="fileToUpload" id="file_to_upload">
-      <!--<button type="submit" name="submit" class="w3-button w3-black w3-hover-gray">
-        <font>Upload Image</font>
-        <i class="fa fa-upload"></i>
-      </button>
-      !-->
       </form>
   </div>
-  <div class="w3-row-padding w3-padding" style="text-align:center;">
-    <font style="padding-right: 20px;">Title</font><input id="title" type="text" name="title" value="This is title">
+  <div class="w3-row-padding w3-padding ui-widget" style="text-align:center;">
+    <font style="padding-right: 20px;">Title</font><input id="title" type="text" name="title" value="">
   </div>
-  <div class="w3-row-padding w3-padding" style="text-align:center;">
-    <font style="padding-right: 20px;">Caption</font><input id="caption" type="text" name="caption" value="This is caption">
+  <div class="w3-row-padding w3-padding ui-widget" style="text-align:center;">
+    <font style="padding-right: 20px;">Caption</font><input id="caption" type="text" name="caption" value="">
   </div>
-  <div class="w3-row-padding w3-padding" style="text-align:center;">
-    <font style="padding-right: 20px;">Location</font><input id="location" type="text" name="location" value="Los Angeles">
+  <div class="w3-row-padding w3-padding ui-widget" style="text-align:center;">
+    <font style="padding-right: 20px;">Location</font><input id="location" type="text" name="location" value="">
   </div>
-  <div class="w3-row-padding w3-padding" style="text-align:center;">
-    <font style="padding-right: 20px;">Parlor</font><input id="parlor" type="text" name="parlor" value="Johnny Tattoo">
+  <div class="w3-row-padding w3-padding ui-widget" style="text-align:center;">
+    <font style="padding-right: 20px;">Parlor</font><input id="parlor" type="text" value="">
   </div>
-  <div class="w3-row-padding w3-padding" style="text-align:center;">
-    <font style="padding-right: 20px;">Artist</font><input id="artist" type="text" name="artist" value="Tattoo Jack">
+  <div class="w3-row-padding w3-padding ui-widget" style="text-align:center;">
+    <font style="padding-right: 20px;">Artist</font><input id="artist" type="text" value="">
   </div>
-  <div class="w3-row-padding w3-padding" style="text-align:center;">
-    <font style="padding-right: 20px;">Tags</font><input id="tag" type="text" name="tag" value="tribal">
+  <div class="w3-row-padding w3-padding ui-widget" style="text-align:center;">
+      <label for="tag" style="padding-right: 20px;">Tags</label><input id="tag" type="text" value="">
   </div>
   <div class="w3-row-padding w3-padding" style="text-align:center;">
       <button id="upload_image" class="w3-button w3-black w3-hover-gray w3-medium">
         <font style="padding-right:5px;">Post</font>
         <i class="fa fa-upload"></i>
-        <!--<i class="fa fa-check" aria-hidden="true"></i>!-->
       </button>
   </div>
 </div>
@@ -106,10 +106,10 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 
 <script src="jquery/js/jquery-1.9.0.min.js"></script>
 <script src="jquery/js/jquery-ui-1.10.0.custom.min.js"></script>
-<script src="./uploadimage.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="./redir.js"></script>
+<script src="./uploadimage.js"></script>
 <script>
 // Script to open and close sidebar
 function w3_open() {
