@@ -95,25 +95,25 @@
       <div class="w3-row w3-grayscale-min">
         <div class="w3-quarter">
           <div id="image0""></div>
-          <div id="image1"></div>
-          <div id="image2"></div>
+          <div id="image4"></div>
+          <div id="image8"></div>
        </div>
         
        <div class="w3-quarter">
-          <div id="image3"></div>
-          <div id="image4"></div>
+          <div id="image1"></div>
           <div id="image5"></div>
+          <div id="image9"></div>
         </div>
         
         <div class="w3-quarter">
+          <div id="image2"></div>
           <div id="image6"></div>
-          <div id="image7"></div>
-          <div id="image8"></div>
+          <div id="image10"></div>
         </div>
     
         <div class="w3-quarter">
-          <div id="image9"></div>
-          <div id="image10"></div>
+          <div id="image3"></div>
+          <div id="image7"></div>
           <div id="image11"></div>
         </div>
       </div>
@@ -179,7 +179,6 @@
           let app = firebase.app();
           let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
           document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
-
         } catch (e) {
           console.error(e);
           document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';

@@ -1,9 +1,10 @@
+
+var database = firebase.database();
+
 var user_name = "";
 var user_email = "";
 var user_id = "";
-
-var user_pics = [];
-
+var user_uploads = [];
 
 $(document).ready(function() {
     get_user_info();
@@ -17,12 +18,14 @@ function get_user_info() {
             user_id = user.uid;
             loadUserInfo();
         }
-        firebase.database().ref('users/' + user_id + '/uploads').once('value').then(function(snapshot) {
+        database.ref('users/' + user_id + '/uploads').limitToLast(6).once('value').then(function(snapshot) {
             if (snapshot.exists()) {
-                user_pics = snapshot.val().uploads;
-                var position = 0
-                for(let i = user_pics.length - 1;  i >= 0 && position < 6; i--) {
-                    firebase.database().ref('imgs/' + user_pics[i]).once('value').then(function(snapshot) {
+                snapshot.forEach( function(childSnapshot) {
+                    user_uploads.push(childSnapshot.val());
+                });
+                var position = 0;
+                for(let i = user_uploads.length - 1;  i >= 0 ; i--) {
+                    database.ref('imgs/' + user_uploads[i]).once('value').then(function(snapshot) {
                         if (snapshot.exists()) {
                             var url = snapshot.val().url;
                             var caption = snapshot.val().caption;
@@ -45,8 +48,6 @@ function appendTextNode(parent, text) {
 
 function loadUserInfo() {
     document.getElementById("user_name").innerHTML = user_name;
-    
-    var database = firebase.database();
     var users_ref = database.ref("users/" + user_id);
     
     // Get the user info

@@ -1,56 +1,59 @@
 // Javascript file for the upload images dialog
 
-var current_count = 0;
+var firebaseRef = firebase.database();
+var user_logged = false;
 
-var current_tag_image_list = [];
 var autocomplete_terms = [];
-var uploads = [];
+var unique = [];
 
 var user_id = "";
 
-$( document ).ready(function() {
+$(document).ready(function() {
 
   setUserLogged();
   setTopBarLinks();
 
-  firebase.database().ref('imgs/max_count').once('value').then(function(snapshot) {
-    if (snapshot.exists()) {
-      current_count = snapshot.val().max_count;
-    }
-  });
-
+  // populates fields with known data
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       user_id = user.uid;
-    
-      // Get the user info
-      firebase.database().ref("users/" + user_id).once('value', function(snapshot) {
+
+      // Query the user info from the database
+      firebaseRef.ref("users/" + user_id).once('value', function(snapshot) {
         user_info = snapshot.val();
         $("#location").val(user_info["location"]);
         $("#parlor").val(user_info["parlor"]);
         $("#artist").val(user_info["name"]);
       });
+    } else {
+      alert("Error: No user was found. Please create an account.");
     }
   });
-  // downloading autocomplete data
-  firebase.database().ref('autocomplete_terms').once('value').then(function(snapshot) {
+
+  // Downloading autocomplete data for tag field
+  firebaseRef.ref('autocomplete_terms').once('value').then(function(snapshot) {
     if (snapshot.exists()) {
-      autocomplete_terms = snapshot.val().autocomplete_terms;
+      snapshot.forEach( function(childSnapshot) {
+        autocomplete_terms.push(childSnapshot.val());
+      });
+
+      // Assign autocomplete array
+      unique = Array.from(new Set(autocomplete_terms));
+      $("#tag").autocomplete({
+        minLength:2,
+        source:unique,
+        select: function (event, ui) {
+          $( "#tag" ).val(ui.item.label);
+            return false;
+        },
+        focus: function( event, ui ) {
+          $( "#tag" ).val(ui.item.label);
+          return false;
+        }
+      });
     } else {
       autocomplete_terms = [];
     }
-    $("#tag").autocomplete({
-      minLength:2,
-      source:unique,
-      select: function (event, ui) {
-        $( "#tag" ).val(ui.item.label);
-          return false;
-      },
-      focus: function( event, ui ) {
-        $( "#tag" ).val(ui.item.label);
-        return false;
-      }
-    });
   });
   $( "#title" ).focus();
 });
@@ -93,21 +96,17 @@ $( "#upload_image" ).click(function () {
   }, function() {
     uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
       console.log('File available at', downloadURL);
-      firebase.database().ref('imgs/max_count').once('value').then(function(snapshot) {
-        if (snapshot.exists()) {
-          current_count = snapshot.val().max_count;
-        }
-      });
-      writeImageData(current_count, document.getElementById('title').value, document.getElementById('caption').value, document.getElementById('location').value, document.getElementById('parlor').value, document.getElementById('artist').value, document.getElementById('tag').value, downloadURL);
-      // head back to profile
+      writeImageData($("#title").val(), $("#caption").val(), $("#location").val(), $("#parlor").val(), $("#artist").val(), $("#tag").val(), downloadURL);
     });
   });
 
 });
 
-function writeImageData(img_id, title, caption, location, parlor, artist, tag, url) {
-  firebase.database().ref('imgs/' + img_id).set({
-    id:img_id,
+function writeImageData(title, caption, location, parlor, artist, tag, url) {
+  var newUploadRef = firebaseRef.ref('imgs').push();
+
+  // upload information for new image
+  newUploadRef.set({
     title: title,
     caption: caption,
     location: location,
@@ -117,40 +116,13 @@ function writeImageData(img_id, title, caption, location, parlor, artist, tag, u
     url: url
   });
 
-  // uploading for getting images of the user
-  firebase.database().ref('users/' + user_id + '/uploads').once('value').then(function(snapshot) {
-    if (snapshot.exists()) {
-      uploads = snapshot.val().uploads;
-      uploads.push(current_count);
-      firebase.database().ref('users/' + user_id + '/uploads').set({uploads});
-    } else {
-      uploads = [];
-      uploads.push(current_count);
-      firebase.database().ref('users/' + user_id + '/uploads').set({uploads});
-    }
-  });
-
-  // uploading for searchability of images by tags
-  firebase.database().ref('tags/' + tag).once('value').then(function(snapshot) {
-    if (snapshot.exists()) {
-      current_tag_image_list = snapshot.val().current_tag_image_list;
-      current_tag_image_list.push(current_count);
-      firebase.database().ref('tags/' + tag).set({current_tag_image_list});
-    } else {
-      current_tag_image_list = [];
-      current_tag_image_list.push(current_count);
-      firebase.database().ref('tags/' + tag).set({current_tag_image_list});
-    }
-  });
+  // uploading of new uploads list for user
+  firebaseRef.ref('users/' + user_id + '/uploads').push().set(newUploadRef.key);
 
   // uploading autocomplete data
-  autocomplete_terms.push(tag);
-  firebase.database().ref('autocomplete_terms').set({autocomplete_terms});
+  firebaseRef.ref('autocomplete_terms').push().set(tag);
 
-  current_count += 1;
-    firebase.database().ref('imgs/max_count').set({
-      max_count: current_count
-    });
+  // return to the profile page
   window.location.href = "profile.html";
 }
 

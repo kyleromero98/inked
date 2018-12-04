@@ -1,32 +1,29 @@
+
+var database = firebase.database();
+var imgs = [];
 var user_logged = false
 
 var mapping = ["one", "two", "three", "four"];
 var current_page = 0;
 
-var maxcount = 1;
-
 $(document).ready(function() {
   setUserLogged();
   setTopBarLinks();
 
-  firebase.database().ref('imgs/max_count').once('value').then(function(snapshot) {
+  database.ref('imgs').limitToLast(48).once('value').then(function(snapshot) {
     if (snapshot.exists()) {
-      maxcount = snapshot.val().max_count;
-
-      var imgcount = 0;
-      for(var i = maxcount-1; i >= 0 && imgcount < 13; i--){
-        var databaseRef = firebase.database().ref('imgs/'+i);
-        databaseRef.once('value').then(function(snapshot) {
-          if (snapshot.exists()) {
-            var url = snapshot.val().url;
-            var caption = snapshot.val().caption;
-            var image1 = '<img src=' + url +' style="width:100%" onclick="onClick(this)" alt="'+caption+'">';
-            var imgnum = 'image' + imgcount;
-            document.getElementById(imgnum).innerHTML = image1;
-            imgcount++;
-          }
-        });
-      }
+      snapshot.forEach(function(childSnapshot) {
+        imgs.push(childSnapshot.val());
+      });
+    }
+    var imgcount = 0;
+    for(var i = imgs.length-1; i >= 0 && imgcount < 13; i--) {
+      var url = imgs[i].url;
+      var caption = imgs[i].caption;
+      var image1 = '<img src=' + url +' style="width:100%" onclick="onClick(this)" alt="'+caption+'">';
+      var imgnum = 'image' + imgcount;
+      document.getElementById(imgnum).innerHTML = image1;
+      imgcount++;
     }
   });
 });
@@ -68,26 +65,19 @@ function four() {
 }
 
 function reload () {
-  firebase.database().ref('imgs/max_count').once('value').then(function(snapshot) {
-    if (snapshot.exists()) {
-      maxcount = snapshot.val().max_count;
-
-      var imgcount = 0;
-      for(var i = maxcount-(1 + current_page * 12); i >= 0 && imgcount < 13; i--){
-        var databaseRef = firebase.database().ref('imgs/'+i);
-        databaseRef.once('value').then(function(snapshot) {
-          if (snapshot.exists()) {
-            var url = snapshot.val().url;
-            var caption = snapshot.val().caption;
-            var image1 = '<img src=' + url +' style="width:100%" onclick="onClick(this)" alt="'+caption+'">';
-            var imgnum = 'image' + imgcount;
-            document.getElementById(imgnum).innerHTML = image1;
-            imgcount++;
-          }
-        });
-      }
-    }
-  });
+  for(var i = 0; i < 12; i++){
+    var imgnum = 'image' + i;
+    document.getElementById(imgnum).innerHTML = "";
+  }
+  var imgcount = 0;
+  for(var i = imgs.length-(1 + current_page * 12); i >= 0 && imgcount < 13; i--){
+    var url = imgs[i].url;
+    var caption = imgs[i].caption;
+    var image1 = '<img src=' + url +' style="width:100%" onclick="onClick(this)" alt="'+caption+'">';
+    var imgnum = 'image' + imgcount;
+    document.getElementById(imgnum).innerHTML = image1;
+    imgcount++;
+  }
 }
 
 function setTopBarLinks() {
@@ -112,14 +102,13 @@ function setUserButtonHref() {
 
 function setUserLogged() {
     firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
+      if (user) {
         user_logged = true;
         makeSignOutVisible();
         setUserButtonHref();
-    }
-    else {
+      } else {
         user_logged = false;
-    }
+      }
     });
 }
 

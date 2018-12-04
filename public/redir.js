@@ -1,3 +1,6 @@
+
+var database = firebase.database();
+
 var autocomplete_terms = [];
 var unique = [];
 
@@ -7,8 +10,7 @@ $(document).ready( function() {
 
 
 function get_autocomplete_terms() {
-	var database = firebase.database();
-	var auto_terms = database.ref("autocomplete_terms/autocomplete_terms/");
+	var auto_terms = database.ref("autocomplete_terms");
 	auto_terms.once('value').then(function(snapshot) {
 		snapshot.forEach( function(childSnapshot) {
 			autocomplete_terms.push(childSnapshot.val());
