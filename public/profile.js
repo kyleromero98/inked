@@ -16,6 +16,15 @@ function get_user_info() {
             user_name = user.displayName;
             user_email = user.email;
             user_id = user.uid;
+            providerUser = firebase.auth().currentUser;
+            providerUser.providerData.forEach(function (profile) {
+                if (profile) {
+                    console.log(profile.photoURL);
+                    $("#profile_pic").attr("src", profile.photoURL);
+                } else {
+                    $("#profile_pic").attr("src", "imgs/artist.jpeg");
+                }
+            });
             loadUserInfo();
         }
         database.ref('users/' + user_id + '/uploads').limitToLast(6).once('value').then(function(snapshot) {

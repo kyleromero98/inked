@@ -2,7 +2,7 @@ var user_logged = false
 
 var database = firebase.database();
 var searchVal;
-var imgIDs = [];
+var imgs = [];
 
 $(document).ready( function() {
     setUserLogged();
@@ -10,29 +10,25 @@ $(document).ready( function() {
     
 	searchVal = localStorage.searchVal;
 	
-	var databaseSearch = database.ref("tags/" + searchVal);
-	databaseSearch.once('value').then(function(snapshot) {
+	database.ref("imgs").orderByChild("tag").startAt(searchVal).endAt(searchVal + "\uf8ff").limitToLast(12).once('value').then(function(snapshot) {
 		if (snapshot.exists()) {
-			imgIDs = snapshot.val().current_tag_image_list;
-			var imgcount = 0;
-			for (var i = 0; i < imgIDs.length && imgcount < 13; i++) {
-				var imgRef = database.ref("imgs/" + imgIDs[i]);
-				imgRef.once('value').then(function(snapshot) {
-					var url = snapshot.val().url;
-					var caption = snapshot.val().caption;
-					var image1 = '<img src=' + url +' style="width:100%" onclick="onClick(this)" alt="'+caption+'">';
-					var imgnum = 'image' + imgcount;
-					document.getElementById(imgnum).innerHTML = image1;
-					imgcount++;
-				});
+      		snapshot.forEach(function(childSnapshot) {
+        		imgs.push(childSnapshot.val());
+      		});
+			var imgcount = 11;
+			for (var i = 0; i < imgs.length; i++) {
+				var url = imgs[i].url;
+				var caption = imgs[i].caption;
+				var image1 = '<img src=' + url +' style="width:100%" onclick="onClick(this)" alt="'+caption+'">';
+				var imgnum = 'image' + imgcount;
+				document.getElementById(imgnum).innerHTML = image1;
+				imgcount--;
 			}
 		} else {
 			alert("No tattoos with this tag ):");
 			window.location.replace("index.html");
 		}
-	});
-	
-	
+    });	
 });
 
 function setTopBarLinks() {
