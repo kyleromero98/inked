@@ -12,7 +12,6 @@ $(document).ready(function() {
   get_user_info();
 });
 
-
 function writeProfileData() {
   var updatedProfileData = {
     about: $("#about").val(),

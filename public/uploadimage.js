@@ -25,8 +25,6 @@ $(document).ready(function() {
         $("#parlor").val(user_info["parlor"]);
         $("#artist").val(user_info["name"]);
       });
-    } else {
-      alert("Error: No user was found. Please create an account.");
     }
   });
 

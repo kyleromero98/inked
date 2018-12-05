@@ -1,17 +1,5 @@
-let valid_info;
-
 function login() {
     // Get the location
-    var user_location = document.getElementById('location_input').value;
-    var user_parlor = document.getElementById('parlor_input').value;
-    var user_bio = document.getElementById('bio_input').value;
-    valid_info = (user_location != "") && (user_parlor != "") && (user_bio != "");
-    if (valid_info) {
-        sessionStorage.location_input = user_location;
-        sessionStorage.parlor_input = user_parlor;
-        sessionStorage.bio_input = user_bio;
-    }
-    
     var provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithRedirect(provider);
 }
@@ -23,10 +11,7 @@ function fire_addUser(uid, name) {
     
     new_user.set({
         name: name,
-        location: sessionStorage.location_input,
-        parlor: sessionStorage.parlor_input,
-        uploads: [],
-        about: sessionStorage.bio_input
+        uploads: []
     });
     
     return new_user.key
@@ -46,25 +31,12 @@ function addIfUserExists(uid, name){
         
         if (!user_exists) {
             fire_addUser(uid, name);
+            window.location.replace("createprofile.html");
         }
-        
-        window.location.replace("index.html");
-
-        /*
-        if (!user_exists && valid_info) {
-            fire_addUser(uid, name);
+        else {
             window.location.replace("index.html");
         }
-        else if (user_exists){
-            window.location.replace("index.html");   
-        }
-        else if (!valid_info) {
-            alert("Please enter info in the boxes below and try again");
-            var user = firebase.auth().currentUser;
-            user.delete();
-            firebase.auth().signOut();
-        }
-        */
+        
     });
 }
 

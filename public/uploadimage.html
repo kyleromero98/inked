@@ -31,6 +31,13 @@
         firebase.initializeApp(config);
 </script>
 
+<script src="jquery/js/jquery-1.9.0.min.js"></script>
+<script src="jquery/js/jquery-ui-1.10.0.custom.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="./uploadimage.js"></script>
+<script src="./redir.js"></script>
+
 <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 </style>
@@ -54,7 +61,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
       <span class="w3-padding" style="display:inline-block;vertical-align:middle;font-size: 32px;"><a id="profile_button" href="profile.html"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a></span>
       <!-- Sign Out Button -->
       <span id="sign_out_span" class="w3-padding" style="display:none;vertical-align:middle;font-size: 32px;">
-        <a id="sign_out_button" href="#" onclick="signOut()">
+        <a id="sign_out_button" onclick="signOut()">
           <i class="fa fa-sign-out" aria-hidden="true"></i>
         </a>
       </span>
@@ -104,23 +111,17 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 
 <div class="w3-black w3-center w3-padding-24">inked by Team CSKJ</div>
 
-<script src="jquery/js/jquery-1.9.0.min.js"></script>
-<script src="jquery/js/jquery-ui-1.10.0.custom.min.js"></script>
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="./redir.js"></script>
-<script src="./uploadimage.js"></script>
 <script>
-// Script to open and close sidebar
-function w3_open() {
-    document.getElementById("mySidebar").style.display = "block";
-    document.getElementById("myOverlay").style.display = "block";
-}
- 
-function w3_close() {
-    document.getElementById("mySidebar").style.display = "none";
-    document.getElementById("myOverlay").style.display = "none";
-}
+    // Script to open and close sidebar
+    function w3_open() {
+        document.getElementById("mySidebar").style.display = "block";
+        document.getElementById("myOverlay").style.display = "block";
+    }
+    
+    function w3_close() {
+        document.getElementById("mySidebar").style.display = "none";
+        document.getElementById("myOverlay").style.display = "none";
+    }
 </script>
 
 </body>

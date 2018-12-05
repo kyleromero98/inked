@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>inked</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="jquery/css/ui-lightness/jquery-ui-1.10.0.custom.css" rel="stylesheet">
+<script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-messaging.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-storage.js"></script>
+
+<script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyALswf2ok94W-G7U414_Nr2wvKMdS15QN0",
+            authDomain: "inked-82308.firebaseapp.com",
+            databaseURL: "https://inked-82308.firebaseio.com/",
+            projectId: "inked-82308",
+            storageBucket: "inked-82308.appspot.com",
+            messagingSenderId: "848318362383"
+        };
+        firebase.initializeApp(config);
+</script>
+
+<script src="jquery/js/jquery-1.9.0.min.js"></script>
+<script src="jquery/js/jquery-ui-1.10.0.custom.min.js"></script>
+<script src="./createprofile.js"></script>
+<script src="./redir.js"></script>
+
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+</style>
+</head>
+
+<body class="w3-light-grey w3-content" style="max-width:1600px">
+
+    <header class="w3-container w3-top w3-white w3-xlarge w3-padding-16 w3-center">
+		<div class="w3-center w3-padding" style="display:inline-block;vertical-align:middle;">
+			<font class="w3-padding" style="display:inline-block;vertical-align:middle;font-size: 64px;">
+				<a style="text-decoration:none;" alt="INKED">INKED</a>
+			</font>
+		</div>
+	</header>
+
+<!-- SIDEBAR -->
+<div class="w3-row-padding w3-main" style="max-width:1600px;margin-top:175px">
+  <div class="w3-row-padding w3-padding" style="text-align:center;">
+    <h1><b>Add Profile Info</b></h1>
+  </div>
+
+  <div class="w3-row-padding w3-padding" style="text-align:center;">
+    <font style="padding-right: 20px;">Location</font><input id="location" type="text" name="location">
+  </div>
+  <div class="w3-row-padding w3-padding" style="text-align:center;">
+    <font style="padding-right: 20px;">Parlor</font><input id="parlor" type="text" name="parlor">
+  </div>
+  <div class="w3-row-padding w3-padding" style="text-align:center;">
+    <font style="padding-right: 20px;">About</font><input id="about" type="text" name="about">
+  </div>
+  <div class="w3-row-padding w3-padding" style="text-align:center;">
+      <button id="update_profile" onclick="writeProfileData()" class="w3-button w3-black w3-hover-gray w3-medium">
+        <font style="padding-right:5px;">Update</font>
+        <i class="fa fa-check" aria-hidden="true"></i>
+      </button>
+  </div>
+</div>
+
+<div class="w3-black w3-center w3-padding-24">inked by Team CSKJ</div>
+
+</body>
+</html>

@@ -43,7 +43,6 @@
 	    <script src="jquery/js/jquery-ui-1.10.0.custom.min.js"></script>
 	    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-	    <script src="./index.js"></script>
 	    <script src="./login.js"></script>
   </head>
 <body class="w3-light-grey">
@@ -57,21 +56,11 @@
 	</header>
 	
 	<div class="w3-main w3-content w3-center" style="max-width:1600px;margin-top:166px;padding-top: 20px">	
-		<font class="w3-xlarge w3-padding-64">Welcome to INKED, a platform that connects you with tattoo artists.</font>
-		<div style="vertical-align: middle;padding-top: 50px">
+		<font id="subtext" class="w3-xlarge w3-padding-64">Welcome to INKED, a platform that connects you with tattoo artists.</font>
+		<!-- Login Button -->
+        <div style="vertical-align: middle;padding-top: 50px">
             <img style="cursor:pointer;width:250px;" src="sign_in_btn.png" onclick="login()">
 		</div>
-        <div style="padding-top: 30px">
-            <div class="ui-widget">
-                <input id="location_input" type="text" placeholder="Enter location">
-            </div>
-            <div class="ui-widget">
-                <input id="bio_input" type="text" placeholder="Enter bio">
-            </div>
-            <div class="ui-widget">
-                <input id="parlor_input" type="text" placeholder="Enter your parlor">
-            </div>
-        </div>
 	</div>
     
 	
